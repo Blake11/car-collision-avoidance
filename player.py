@@ -43,11 +43,9 @@ class Car:
         if direction == "left":
             if self.shape.left > 0:
                 self.shape = self.shape.move(-self.speed, 0)
-                print("moving " + direction)
         elif direction == "right":
             if self.shape.right < SCREEN_WIDTH:
                 self.shape = self.shape.move(self.speed, 0)
-                print("moving " + direction)
         elif direction == "down":
             if self.shape.bottom < SCREEN_HEIGHT * 1.2 + CAR_HEIGHT:
                 self.shape = self.shape.move(0, self.speed)
@@ -65,6 +63,9 @@ class Car:
             distance = inf
 
         return distance
+
+    def get_lane(self):
+        return (self.shape.centerx-10)/SCREEN_WIDTH*10//3 + 1
 
     def is_same_lane(self, other_car):
         if self.shape.centerx > other_car.shape.centerx + CAR_WIDTH or self.shape.centerx < other_car.shape.centerx - CAR_WIDTH:
